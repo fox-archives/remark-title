@@ -1,7 +1,7 @@
 {
   "name": "remark-title",
-  "version": "1.0.4",
-  "description": "remark plugin to inject a title into a file",
+  "version": "2.0.0",
+  "description": "Remark plugin to inject top-level title",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -30,7 +30,6 @@
   "keywords": [
     "remark",
     "mdast",
-    "title",
     "markdown"
   ]
 }
