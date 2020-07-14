@@ -1,5 +1,5 @@
 {
-  "name": "remark-title",
+  "name": "@fox-land/remark-title",
   "version": "2.0.0",
   "description": "Remark plugin to inject top-level title",
   "main": "index.js",
