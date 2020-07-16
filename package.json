@@ -1,8 +1,8 @@
 {
 	"name": "@fox-land/remark-title",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Remark plugin to inject top-level title",
-	"main": "index.js",
+	"main": "build",
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
