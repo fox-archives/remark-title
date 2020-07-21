@@ -1,34 +1,54 @@
-import remarkTitle from "../src";
-import { doRemark } from "./test.util";
+import remark from 'remark'
+import remarkTitle from '../src'
 
-test("it basically works", () => {
-  const input = "";
-  const output = "# Baz\n";
+interface Plugin {
+	fn: Function
+	options: Record<string, any>
+}
 
-  const plugins = [
-    {
-      fn: remarkTitle,
-      options: {
-        title: "Baz",
-      },
-    },
-  ];
+export function doRemark(input: string, plugins: Plugin[], output: string) {
+	let result = remark()
+	for (const plugin of plugins) {
+		result = result().use(plugin.fn, plugin.options)
+	}
+	result
+		.process(input)
+		.then((vfile) => {
+			expect(vfile.contents).toBe(output)
+		})
+		.catch((err) => {
+			console.error(err)
+		})
+}
 
-  doRemark(input, plugins, output);
-});
+test('it basically works', () => {
+	const input = ''
+	const output = '# Baz\n'
 
-test("it replaces", () => {
-  const input = "# Golf\n";
-  const output = "# Foxtrot\n";
+	const plugins = [
+		{
+			fn: remarkTitle,
+			options: {
+				title: 'Baz',
+			},
+		},
+	]
 
-  const plugins = [
-    {
-      fn: remarkTitle,
-      options: {
-        title: "Foxtrot",
-      },
-    },
-  ];
+	doRemark(input, plugins, output)
+})
 
-  doRemark(input, plugins, output);
-});
+test('it replaces', () => {
+	const input = '# Golf\n'
+	const output = '# Foxtrot\n'
+
+	const plugins = [
+		{
+			fn: remarkTitle,
+			options: {
+				title: 'Foxtrot',
+			},
+		},
+	]
+
+	doRemark(input, plugins, output)
+})
